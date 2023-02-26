@@ -36,7 +36,6 @@ function ChatRow({ id }: Props) {
             <ChatBubbleLeftIcon className='h-5 w-5' />
             <p className='flex-1 hidden md:inline-flex truncate ' >
                 {messages?.docs[messages?.docs.length - 1]?.data().text || 'New Chat'}
-                {console.log('messages: ', messages)}
             </p>
             <TrashIcon onClick={removeChat} className='h-5 w-5 text-gray-700 hover:text-red-700' />
         </Link>
