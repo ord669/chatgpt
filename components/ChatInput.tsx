@@ -4,6 +4,7 @@ import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { Session } from 'inspector'
 import { useSession } from 'next-auth/react'
 import { FormEvent, useState } from 'react'
+import { toast } from 'react-hot-toast'
 import { db } from '../firebase'
 
 type Props = {
@@ -15,7 +16,7 @@ function ChatInput({ chatId }: Props) {
 
     //!use swr to get model
 
-    const model = 'text-devinci-003'
+    const model = 'text-davinci-003'
 
     const sendMsg = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -39,7 +40,7 @@ function ChatInput({ chatId }: Props) {
             message
         )
 
-        //Toast notification
+        const notification = toast.loading('ChatGPT is thinking...')
 
         await fetch('/api/askQuestion', {
             method: 'POST',
@@ -47,10 +48,17 @@ function ChatInput({ chatId }: Props) {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({
-                prompt: input, chatId, model, session
+                prompt: input,
+                chatId,
+                model,
+                session
             })
         }).then(() => {
-            // Toast notification sucsses
+            toast.success('ChatGPT has responded', {
+                id: notification,
+            })
+        }).catch((err) => {
+            console.log('err:', err)
         })
 
     }
