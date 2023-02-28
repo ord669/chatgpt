@@ -1,9 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { adminDb } from '../../firebaseAdmin'
-import query from '../../lib/queryApi'
-import admin from "firebase-admin";
 import openai from '../../lib/chatgpt';
 
 type Option = {

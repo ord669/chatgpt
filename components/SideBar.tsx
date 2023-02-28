@@ -18,7 +18,7 @@ function SideBar() {
         ))
 
     return (
-        <div className="p-2 flex flex-col h-screen">
+        <div className="p-2 flex flex-col h-full md:h-screen">
             <div className="flex-1">
                 <div>
                     {/* New Chat */}

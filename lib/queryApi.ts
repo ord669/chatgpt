@@ -2,8 +2,6 @@ import { async } from "@firebase/util";
 import openai from "./chatgpt";
 
 const query = async (prompt: string, chatId: string, model: string) => {
-    console.log('model: ', model);
-    console.log('prompt: ', prompt);
     const res = await openai.createCompletion({
         model: "text-davinci-003",
         prompt,
